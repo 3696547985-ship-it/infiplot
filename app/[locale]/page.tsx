@@ -898,26 +898,26 @@ function StoryCard({
       type="button"
       onClick={onClick}
       style={{ aspectRatio: "4 / 5" }}
-      className="group relative block w-full overflow-hidden rounded-sm border border-clay-900/10 bg-cream-100 text-left transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-md hover:shadow-clay-900/5"
+      className="card-reveal group relative block w-full overflow-hidden rounded-xl border border-clay-900/8 bg-cream-100 text-left shadow-card transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-card-hover"
     >
       <img
         src={image}
         alt={title}
         loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        className="absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:saturate-[1.1]"
       />
       {/* hover 浮层：展示故事标题与大纲内容 */}
       <div
-        className="absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 flex flex-col justify-end p-4 md:p-5"
+        className="absolute inset-0 z-20 opacity-0 transition-all duration-400 ease-out group-hover:opacity-100 flex flex-col justify-end p-4 md:p-5"
         style={{
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.45) 45%, rgba(0,0,0,0) 100%)",
+            "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0) 100%)",
         }}
       >
-        <h4 className="font-serif text-cream-50 text-base md:text-lg leading-snug mb-1 [text-shadow:0_1px_8px_rgba(20,10,4,0.7)]">
+        <h4 className="font-serif text-cream-50 text-base md:text-lg leading-snug mb-1.5 translate-y-4 transition-transform duration-400 ease-out group-hover:translate-y-0 [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]">
           {title}
         </h4>
-        <p className="font-serif italic text-cream-50/95 text-xs md:text-[13px] leading-relaxed line-clamp-4 [text-shadow:0_1px_6px_rgba(20,10,4,0.6)]">
+        <p className="font-serif italic text-cream-50/90 text-xs md:text-[13px] leading-relaxed line-clamp-4 translate-y-2 transition-all duration-400 delay-75 ease-out group-hover:translate-y-0 [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
           {outline}
         </p>
       </div>
@@ -949,33 +949,33 @@ function CategorySelect({
       <button
         type="button"
         onClick={onToggle}
-        className="group flex items-center gap-2.5 pb-1.5 border-b border-clay-900/20 hover:border-clay-900/45 transition-colors"
+        className="group flex items-center gap-2.5 pb-1.5 border-b-2 border-clay-900/15 hover:border-clay-900/35 transition-all duration-300"
       >
-        <span className="text-[10px] smallcaps text-clay-500">{label}</span>
-        <span className={"font-serif text-base md:text-lg " + (open ? "text-ember-500" : "text-clay-900")}>
+        <span className="text-[10px] smallcaps text-clay-400">{label}</span>
+        <span className={"font-serif text-base md:text-lg transition-colors duration-300 " + (open ? "text-ember-500" : "text-clay-900 group-hover:text-clay-700")}>
           {itemLabels[value] ?? items[value]}
         </span>
         <i
           className={
-            "fa-solid fa-chevron-down text-[9px] text-clay-400 transition-transform duration-200 " +
-            (open ? "rotate-180" : "")
+            "fa-solid fa-chevron-down text-[9px] text-clay-400 transition-all duration-300 " +
+            (open ? "rotate-180 text-ember-500" : "group-hover:translate-y-[1px]")
           }
         />
       </button>
       {open && (
-        <div className="absolute left-0 top-full mt-2 z-30 min-w-[150px] max-w-[calc(100vw-2rem)] py-1.5 bg-cream-50 border border-clay-900/15 rounded-sm shadow-xl shadow-clay-900/10">
+        <div className="absolute left-0 top-full mt-2.5 z-30 min-w-[160px] max-w-[calc(100vw-2rem)] py-2 glass rounded-xl animate-fade-in">
           {items.map((it, i) => (
             <button
               key={i}
               type="button"
               onClick={() => onPick(i)}
               className={
-                "flex w-full items-center justify-between gap-3 px-4 py-1.5 text-sm font-serif transition-colors hover:bg-cream-100 " +
-                (i === value ? "text-ember-500" : "text-clay-700")
+                "flex w-full items-center justify-between gap-3 px-5 py-2 text-sm font-serif transition-all duration-200 hover:bg-cream-100/80 " +
+                (i === value ? "text-ember-500 font-medium" : "text-clay-700 hover:text-clay-900")
               }
             >
               {itemLabels[i] ?? it}
-              {i === value && <i className="fa-solid fa-check text-[10px]" />}
+              {i === value && <i className="fa-solid fa-check text-[10px] text-ember-500" />}
             </button>
           ))}
         </div>
@@ -1833,7 +1833,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
       {/* ================== HEADER ================== */}
-      <header className="mx-auto w-full max-w-[1640px] px-6 md:px-16 pt-7 md:pt-10 flex items-center justify-between">
+      <header className="relative z-20 mx-auto w-full max-w-[1640px] px-6 md:px-16 pt-7 md:pt-10 flex items-center justify-between">
         <span className="font-serif text-2xl md:text-[34px] leading-none tracking-tight text-clay-900">
           Infi<em className="italic font-light text-ember-500">Plot</em>
         </span>
@@ -1884,11 +1884,11 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* ================== HERO 控制区（居中，呼应原型布局） ================== */}
-      <section className="px-6 md:px-16 pt-12 md:pt-24 pb-10 md:pb-14">
+      {/* ================== HERO 控制区 ================== */}
+      <section className="relative z-10 px-6 md:px-16 pt-14 md:pt-28 pb-12 md:pb-16">
         <div className="mx-auto max-w-[1100px] text-center">
-          <h1 className="font-serif font-light text-[32px] md:text-[56px] leading-[1.12] tracking-tight text-clay-900">
-            {t("home.hero.title")}
+          <h1 className="font-serif font-light text-[36px] md:text-[62px] leading-[1.08] tracking-tight">
+            <span className="text-gradient">{t("home.hero.title")}</span>
           </h1>
 
           {/* prompt 输入（居中） */}
@@ -1897,9 +1897,9 @@ export default function HomePage() {
               e.preventDefault();
               start();
             }}
-            className="mx-auto mt-9 md:mt-12 max-w-[760px]"
+            className="mx-auto mt-10 md:mt-14 max-w-[760px]"
           >
-            <div className="relative text-left">
+            <div className="relative text-left group/input">
               <textarea
                 ref={inputRef}
                 value={prompt}
@@ -1913,7 +1913,7 @@ export default function HomePage() {
                 rows={1}
                 placeholder=" "
                 spellCheck={false}
-                className="block w-full resize-none overflow-hidden border-b border-clay-900/25 bg-transparent py-3 md:py-4 pr-36 font-serif text-lg md:text-2xl lining-nums text-clay-900 outline-none transition-colors focus:border-ember-500"
+                className="block w-full resize-none overflow-hidden border-b-2 border-clay-900/20 bg-transparent py-3 md:py-4 pr-36 font-serif text-lg md:text-2xl lining-nums text-clay-900 outline-none transition-all duration-300 focus:border-ember-500 focus:shadow-[0_1px_0_0_rgba(217,122,46,0.3)] group-hover/input:border-clay-900/35"
               />
               {!prompt && (
                 <div className="pointer-events-none absolute left-0 right-0 top-0 overflow-hidden whitespace-nowrap py-3 md:py-4 pr-36 font-serif text-lg md:text-2xl text-clay-400">
@@ -1932,13 +1932,12 @@ export default function HomePage() {
                 className="hidden"
                 onChange={(e) => void handleStoryImport(e.target.files?.[0])}
               />
-              {/* 右下操作集群：载入剧情 + 开始，统一锚定 right-0，杜绝 right-[-...]
-                  负偏移导致的移动端横向溢出。 */}
+              {/* 右下操作集群 */}
               <div className="absolute right-0 bottom-2 md:bottom-3 flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => storyImportRef.current?.click()}
-                  className="group relative inline-flex items-center justify-center rounded-sm border border-clay-900/15 bg-cream-50/70 backdrop-blur-sm px-2 py-2 md:py-2.5 text-clay-400 transition-colors hover:border-ember-500 hover:bg-cream-50/90 hover:text-ember-500"
+                  className="group relative inline-flex items-center justify-center rounded-lg border border-clay-900/15 bg-cream-50/70 backdrop-blur-sm px-3 py-2 md:py-2.5 text-clay-400 transition-all duration-300 hover:border-ember-500/50 hover:bg-cream-50/90 hover:text-ember-500 hover:shadow-md"
                 >
                   <i className="fa-solid fa-file-import text-sm" />
                   <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-clay-900 px-2 py-1 font-sans text-[11px] text-cream-50 opacity-0 transition-opacity group-hover:opacity-100">
@@ -1947,10 +1946,10 @@ export default function HomePage() {
                 </button>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 rounded-sm bg-clay-900 px-5 py-2 md:py-2.5 font-sans text-sm md:text-[15px] text-cream-50 transition-colors hover:bg-ember-500"
+                  className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-clay-900 to-clay-700 px-6 py-2.5 md:py-3 font-sans text-sm md:text-[15px] text-cream-50 transition-all duration-300 hover:from-ember-500 hover:to-ember-400 hover:shadow-glow-ember hover:-translate-y-[1px] active:translate-y-0"
                 >
                   {t("home.ui.start")}
-                  <i className="fa-solid fa-arrow-right text-xs" />
+                  <i className="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </div>
             </div>
@@ -1967,7 +1966,7 @@ export default function HomePage() {
           </form>
 
           {/* 类别选择器（居中） */}
-          <div className="mt-9 md:mt-11 flex flex-wrap justify-center gap-x-8 gap-y-5">
+          <div className="mt-10 md:mt-12 flex flex-wrap justify-center gap-x-8 gap-y-5">
             {OPTS.map((o, r) => (
               <div data-cat key={r} className="text-left">
                 <CategorySelect
@@ -1994,11 +1993,11 @@ export default function HomePage() {
 
 
 
-          {/* 使用提示：可被用户永久关闭（localStorage:infiplot:hintClosed） */}
+          {/* 使用提示 */}
           {!hintClosed && (
-            <div className="relative mx-auto mt-10 md:mt-12 max-w-[640px] rounded-sm border border-clay-900/10 bg-cream-100/50 px-5 md:px-8 py-3.5">
+            <div className="relative mx-auto mt-10 md:mt-14 max-w-[640px] rounded-xl glass-light px-6 md:px-8 py-4 animate-fade-in">
               <p
-                className="font-serif text-[13px] md:text-sm leading-relaxed text-clay-500"
+                className="font-serif text-[13px] md:text-sm leading-relaxed text-clay-600"
                 dangerouslySetInnerHTML={{ __html: t("home.hint.text", { authEnabled: AUTH_ENABLED }) }}
               />
               <button
@@ -2014,8 +2013,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ================== 统一瀑布流（每性向 30 篇预设剧情） ================== */}
-      <section className="mx-auto w-full max-w-[1640px] px-6 md:px-16 pt-10 md:pt-14 pb-16 md:pb-24">
+      {/* ================== 统一瀑布流 ================== */}
+      <section className="relative z-10 mx-auto w-full max-w-[1640px] px-6 md:px-16 pt-12 md:pt-16 pb-16 md:pb-24">
         <div
           className={
             "transition-[opacity,filter] duration-300 ease-out " +
@@ -2035,111 +2034,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ================== 项目介绍（居中题跋） ================== */}
-      <section id="about" className="mx-auto w-full max-w-[1640px] px-6 md:px-16 pb-12 md:pb-16">
-        <div className="hairline-full w-full mb-12 md:mb-16" />
-
-        <div className="mx-auto max-w-3xl text-center mb-14 md:mb-20">
-          <p className="font-serif text-clay-800 text-xl md:text-2xl leading-[1.7]">
-            <b className="font-medium text-clay-900">InfiPlot</b>{" "}
-            {t("home.about.description")}
-          </p>
-        </div>
-
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-y-10 text-center md:grid-cols-2 lg:grid-cols-4 md:gap-x-10">
-          <div>
-            <p className="text-[10px] smallcaps text-clay-500 mb-3">{t("home.about.team")}</p>
-            <p className="font-serif italic text-clay-700 text-base leading-relaxed">
-              {t("home.about.teamText")}
-            </p>
-          </div>
-
-          <div>
-            <p className="text-[10px] smallcaps text-clay-500 mb-3">{t("home.about.contact")}</p>
-            <p className="font-serif text-clay-700 text-base leading-relaxed">
-              <span className="block mb-2">
-                {t("home.about.email")}{" "}
-                <a
-                  href="mailto:hi@infiplot.com"
-                  className="text-ember-500 hover:text-ember-400 transition-colors"
-                >
-                  hi@infiplot.com
-                </a>
-              </span>
-              <a
-                href="https://x.com/yzh_im"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-clay-700 hover:text-ember-500 transition-colors"
-              >
-                <i className="fa-brands fa-x-twitter text-[15px]" />
-                <span className="font-sans text-sm">@yzh_im</span>
-              </a>
-            </p>
-            <p className="text-[10px] smallcaps text-clay-500 mb-3 mt-7">{t("home.about.openSource")}</p>
-            <a
-              href="https://github.com/zonghaoyuan/infiplot"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-clay-700 hover:text-ember-500 transition-colors"
-            >
-              <i className="fa-brands fa-github text-[15px]" />
-              <span className="font-sans text-sm">zonghaoyuan/infiplot</span>
-            </a>
-          </div>
-
-          <div>
-            <p className="text-[10px] smallcaps text-clay-500 mb-3">{t("home.about.betaUsers")}</p>
-            <img
-              src="/qq-group.webp"
-              alt={t("home.about.qqGroupAlt")}
-              width={760}
-              height={760}
-              loading="lazy"
-              className="mx-auto mb-3 w-32 max-w-full rounded-sm border border-clay-900/10 shadow-sm shadow-clay-900/5"
-            />
-            <p className="font-serif text-clay-700 text-base leading-relaxed">
-              {t("home.about.qqGroupLabel")}
-              <span className="font-sans text-sm text-clay-900">575404333</span>
-            </p>
-          </div>
-
-          <div>
-            <p className="text-[10px] smallcaps text-clay-500 mb-3">{t("home.ui.feedback")}</p>
-            <p className="font-serif text-clay-700 text-base leading-relaxed mb-4">
-              {t("home.about.feedbackDescription")}
-            </p>
-            <a
-              href="https://tally.so/r/VLqO1M"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-clay-700 hover:text-ember-500 transition-colors"
-            >
-              <i className="fa-solid fa-comment-dots text-[15px]" />
-              <span className="font-sans text-sm">{t("home.ui.submitFeedback")}</span>
-            </a>
-          </div>
-        </div>
-
-        <div className="hairline-full w-full mt-14 md:mt-20 mb-12 md:mb-16" />
-        <p
-          className="mx-auto max-w-3xl text-center font-sans text-xs md:text-[13px] leading-[1.85] text-clay-500"
-          dangerouslySetInnerHTML={{ __html: t("home.about.legalNotice", { analyticsOn }) }}
-        />
-      </section>
-
-      <footer className="mx-auto w-full max-w-[1640px] px-6 md:px-16 pb-10 mt-auto">
-        <div className="hairline-full w-full mb-5" />
-        <div className="flex flex-col items-center gap-2 text-[10px] smallcaps text-clay-500">
-          <span>{t("home.about.copyright")}</span>
-          <span className="flex items-center gap-3 normal-case tracking-normal text-[11px]">
-            <a href={lp("/privacy")} className="hover:text-ember-500 transition-colors">{t("home.about.privacyPolicy")}</a>
-            <span className="text-clay-300">·</span>
-            <a href={lp("/terms")} className="hover:text-ember-500 transition-colors">{t("home.about.terms")}</a>
-          </span>
-        </div>
-      </footer>
 
 
       {styleOpen && styleRow >= 0 && (
