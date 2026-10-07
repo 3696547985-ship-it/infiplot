@@ -34,6 +34,15 @@
 - **卡片揭示动画**：剧情卡片 hover 时叠加渐隐遮罩、标题与大纲文字上浮，图片轻微放大并增强饱和，交互更有呼吸感
 - **新配色与动效体系**：引入 aurora（青绿）与 plum（梅子紫）辅助色，扩展阴影（glow-ember / glow-aurora / card）与关键帧动画（float / orb / shimmer / glow-pulse）
 
+**改版效果预览**（左：桌面端，右：移动端）：
+
+<table>
+  <tr>
+    <td><img src="docs/ui-redesign/home-desktop.png" width="560" alt="InfiPlot UI 改版 - 桌面端"></td>
+    <td><img src="docs/ui-redesign/home-mobile.png" width="200" alt="InfiPlot UI 改版 - 移动端"></td>
+  </tr>
+</table>
+
 **改版作者**：[3696547985-ship-it](https://github.com/3696547985-ship-it)
 
 ---
